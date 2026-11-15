@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Promo Director — Your Free Prompt Gift | Glam Hustle Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Montserrat',sans-serif; color:#103B63; min-height:100vh; overflow-x:hidden;
+         background: linear-gradient(165deg, #ffffff 0%, #d9efff 30%, #8ec9f8 62%, #168FEA 100%); }
+  /* ---------- floating background magic ---------- */
+  .sky { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .glow { position:absolute; border-radius:50%; filter:blur(50px); opacity:.55; animation:breathe 7s ease-in-out infinite; }
+  @keyframes breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
+  .floater { position:absolute; bottom:-70px; animation:rise linear infinite; opacity:.95; }
+  .floater img { width:100%; display:block; filter:drop-shadow(0 0 10px rgba(255,255,255,.85)); }
+  @keyframes rise { 0%{ transform:translateY(0) translateX(0) rotate(-6deg); opacity:0; }
+                    8%{ opacity:1; } 50%{ transform:translateY(-55vh) translateX(26px) rotate(7deg); }
+                    92%{ opacity:1; } 100%{ transform:translateY(-108vh) translateX(-14px) rotate(-5deg); opacity:0; } }
+  .flyby { position:fixed; top:11%; left:-90px; width:72px; z-index:1; pointer-events:none;
+           animation:fly 3.4s ease-in-out .4s 1 forwards; filter:drop-shadow(0 0 14px rgba(255,255,255,.95)); }
+  @keyframes fly { 0%{ transform:translate(0,0) rotate(8deg); } 45%{ transform:translate(48vw,-34px) rotate(-7deg); }
+                   100%{ transform:translate(112vw,10px) rotate(6deg); } }
+  /* ---------- layout ---------- */
+  .wrap { position:relative; z-index:2; max-width:640px; margin:0 auto; padding:30px 18px 44px; }
+  h1 { font-family:'Anton',sans-serif; letter-spacing:.5px; line-height:1.08; text-transform:uppercase; color:#103B63;
+       text-shadow:0 2px 0 rgba(255,255,255,.65); }
+  .screen { display:none; animation:pop .4s ease; }
+  .screen.on { display:block; }
+  @keyframes pop { from { opacity:0; transform:translateY(12px) scale(.98);} to { opacity:1; transform:none;} }
+  .card { background:rgba(255,255,255,.82); border:2px solid rgba(255,255,255,.95); border-radius:20px; padding:22px; margin-top:18px;
+          box-shadow:0 12px 34px rgba(16,59,99,.22), 0 0 22px rgba(255,255,255,.55); }
+  .emj { height:1.3em; vertical-align:-.28em; }
+  .hero-emj { display:block; margin:0 auto; filter:drop-shadow(0 0 16px rgba(255,255,255,.9)); }
+  .gift { display:block; width:min(250px,68vw); margin:8px auto 0; cursor:pointer; user-select:none; animation:wobble 2.2s infinite;
+          filter:drop-shadow(0 0 26px rgba(255,215,64,.75)) drop-shadow(0 12px 20px rgba(16,59,99,.3)); }
+  @keyframes wobble { 0%,86%,100%{transform:rotate(0) scale(1)} 90%{transform:rotate(-4deg) scale(1.05)} 94%{transform:rotate(4deg) scale(1.05)} }
+  .bigbtn { display:block; width:100%; margin-top:20px; padding:17px; border:none; border-radius:999px; cursor:pointer;
+            font-family:'Anton',sans-serif; font-size:20px; letter-spacing:.6px; text-transform:uppercase; color:#fff;
+            background:linear-gradient(90deg,#168FEA,#103B63); box-shadow:0 10px 26px rgba(22,143,234,.55), 0 0 18px rgba(94,180,247,.7);
+            animation:pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{ box-shadow:0 10px 26px rgba(22,143,234,.55), 0 0 12px rgba(94,180,247,.55);} 50%{ box-shadow:0 10px 26px rgba(22,143,234,.6), 0 0 30px rgba(94,180,247,.95);} }
+  .bigbtn:active { transform:scale(.98); }
+  .ghost { background:rgba(255,255,255,.75); color:#103B63; border:2px solid #168FEA; box-shadow:none; animation:none; font-size:15px; padding:13px; }
+  label { display:block; font-weight:800; font-size:13px; margin:16px 0 6px; text-transform:uppercase; letter-spacing:.4px; color:#103B63; }
+  input { width:100%; padding:13px 14px; border-radius:12px; border:2px solid #b7dcfb; background:#fff; color:#103B63; font-size:16px; font-family:'Montserrat',sans-serif; }
+  input::placeholder { color:#8fb8d8; }
+  input:focus { outline:none; border-color:#168FEA; box-shadow:0 0 12px rgba(22,143,234,.45); }
+  .row { display:flex; gap:10px; } .row > div { flex:1; }
+  .chips { display:flex; gap:8px; margin-top:6px; }
+  .chip { flex:1; text-align:center; padding:12px 4px; border-radius:999px; border:2px solid #b7dcfb; cursor:pointer; font-weight:800; background:#fff; color:#103B63; }
+  .chip.sel { background:#168FEA; border-color:#168FEA; color:#fff; box-shadow:0 0 14px rgba(22,143,234,.6); }
+  pre { white-space:pre-wrap; word-wrap:break-word; font-family:'Montserrat',sans-serif; font-size:14.5px; line-height:1.55; color:#103B63;
+        background:linear-gradient(180deg,#f2f9ff,#e2f1fe); border:2px solid #8ec9f8; border-radius:14px; padding:18px; max-height:46vh; overflow:auto; }
+  .steps { margin-top:12px; } .steps li { margin:10px 0 10px 20px; line-height:1.5; }
+  .builds { list-style:none; margin-top:10px; }
+  .builds li { display:flex; align-items:center; gap:10px; margin:9px 0; line-height:1.45; font-weight:600; }
+  .builds img { width:30px; flex:none; filter:drop-shadow(0 0 6px rgba(255,255,255,.9)); }
+  .dots { text-align:center; margin-top:16px; font-size:12px; letter-spacing:6px; color:rgba(16,59,99,.4); }
+  .dots b { color:#103B63; }
+  .foot { display:flex; gap:10px; margin-top:26px; }
+  .foot a { flex:1; text-align:center; text-decoration:none; padding:15px 8px; border-radius:999px; font-weight:800; font-size:14px; }
+  .join { background:linear-gradient(90deg,#168FEA,#103B63); color:#fff; box-shadow:0 8px 20px rgba(22,143,234,.5); }
+  .shop { background:rgba(255,255,255,.85); border:2px solid #168FEA; color:#103B63; }
+  .sub { text-align:center; color:#17456e; line-height:1.6; margin-top:10px; font-weight:600; }
+  .glamified { text-align:center; font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:1px;
+               font-size:24px; color:#0b6fc2; text-shadow:0 0 14px rgba(255,255,255,.95), 0 2px 0 rgba(255,255,255,.6); }
+  .spark { position:fixed; pointer-events:none; z-index:99; width:28px; }
+</style>
+</head>
+<body>
+
+<div class="sky" id="sky">
+  <div class="glow" style="width:340px;height:340px;background:#ffd76e;top:-90px;left:-70px;"></div>
+  <div class="glow" style="width:300px;height:300px;background:#ff9fd6;bottom:-80px;right:-60px;animation-delay:2s;"></div>
+  <div class="glow" style="width:220px;height:220px;background:#ffffff;top:38%;left:62%;animation-delay:4s;"></div>
+</div>
+<img class="flyby" src="glam-butterfly.png" alt="">
+
+<div class="wrap">
+
+  <!-- SCREEN 1 · THE GIFT -->
+  <section class="screen on" id="s1">
+    <img class="hero-emj" src="glam-butterfly.png" alt="Glam butterfly" style="width:92px;">
+    <h1 style="text-align:center; font-size:35px; margin-top:6px;">You scored a<br><span style="color:#0b6fc2;">FREE gift!</span></h1>
+    <p class="sub">Your gift is inside — and it's <b>not</b> a boring PDF. <img class="emj" src="glam-sparkles.png" alt=""></p>
+    <img class="gift" id="giftBox" src="glam-gift.png" alt="Your gift — tap to unwrap" title="Tap to unwrap">
+    <p class="sub">It's <b>The Promo Director</b> — the one prompt that turns ChatGPT or Claude into your personal promo director and builds your whole sale for you. <b>Take command of your whole sale.</b> This page builds it with <i>your</i> details already filled in.</p>
+    <div class="card">
+      <h1 style="font-size:19px;">Here's what it builds for you</h1>
+      <ul class="builds">
+        <li><img src="glam-sparkles.png" alt="">A commercial script + a video ad script</li>
+        <li><img src="glam-butterfly.png" alt="">Flyer copy and ad copy that sells</li>
+        <li><img src="glam-heart.png" alt="">Captions and posts in your voice</li>
+        <li><img src="glam-sparkles.png" alt="">A Pinterest pin + a launch email</li>
+        <li><img src="glam-butterfly.png" alt="">A live selling script + a 7-day content plan</li>
+      </ul>
+      <p style="line-height:1.6; margin-top:10px;">For <b>any</b> sale or launch — a holiday promo, a new product drop, a birthday sale — not just Black Friday.</p>
+    </div>
+    <button class="bigbtn" onclick="unwrap()">Unwrap My Gift <img class="emj" src="glam-gift.png" alt=""></button>
+    <div class="dots"><b>●</b> ○ ○</div>
+  </section>
+
+  <!-- SCREEN 2 · MAKE IT YOURS -->
+  <section class="screen" id="s2">
+    <h1 style="font-size:27px;">Make it yours <img class="emj" src="glam-sparkles.png" alt=""></h1>
+    <p class="sub" style="text-align:left;">Answer what you can — skip anything you're not sure about and the page leaves a fill-in spot for you.</p>
+    <div class="card" style="margin-top:14px;">
+      <label>Your product / offer</label>
+      <input id="f_product" placeholder="e.g. My Prompt Studio Bundle">
+      <label>What it does for your customer (one sentence)</label>
+      <input id="f_result" placeholder="e.g. It helps beginners make their first digital product">
+      <div class="row">
+        <div><label>Regular price $</label><input id="f_reg" inputmode="decimal" placeholder="47"></div>
+        <div><label>Sale price $</label><input id="f_sale" inputmode="decimal" placeholder="27"></div>
+      </div>
+      <div class="row">
+        <div><label>Sale starts</label><input id="f_start" placeholder="e.g. Nov 25"></div>
+        <div><label>Sale ends</label><input id="f_end" placeholder="e.g. Dec 1"></div>
+      </div>
+      <label>Your shop link</label>
+      <input id="f_link" placeholder="https://yourshop.com">
+      <label>Coupon code (if any)</label>
+      <input id="f_code" placeholder="Leave blank if none">
+      <label>Who do you sell to?</label>
+      <input id="f_aud" placeholder="e.g. women 40+ starting an online business">
+      <label>Your tone</label>
+      <div class="chips">
+        <div class="chip sel" data-tone="SASSY"><img class="emj" src="glam-butterfly.png" alt=""> Sassy</div>
+        <div class="chip" data-tone="WARM"><img class="emj" src="glam-heart.png" alt=""> Warm</div>
+        <div class="chip" data-tone="BOLD"><img class="emj" src="glam-sparkles.png" alt=""> Bold</div>
+      </div>
+    </div>
+    <button class="bigbtn" onclick="buildPrompt()">Build My Prompt <img class="emj" src="glam-sparkles.png" alt=""></button>
+    <div class="dots">○ <b>●</b> ○</div>
+  </section>
+
+  <!-- SCREEN 3 · YOUR PROMPT -->
+  <section class="screen" id="s3">
+    <img class="hero-emj" src="glam-butterfly.png" alt="Glam butterfly" style="width:74px;">
+    <p class="glamified" style="margin-top:8px;">You've been Glamified!</p>
+    <h1 style="font-size:27px; text-align:center; margin-top:8px;">Your prompt is ready <img class="emj" src="glam-sparkles.png" alt=""></h1>
+    <p class="sub" style="text-align:left;">This is the whole gift — your Promo Director prompt, already wearing your details:</p>
+    <div class="card" style="margin-top:14px;">
+      <pre id="promptOut"></pre>
+      <button class="bigbtn" id="copyBtn" onclick="copyPrompt()">Copy My Prompt <img class="emj" src="glam-heart.png" alt=""></button>
+    </div>
+    <div class="card">
+      <h1 style="font-size:20px;">How to use it — 3 easy steps</h1>
+      <ol class="steps">
+        <li><b>Copy it</b> with the button above.</li>
+        <li><b>Paste it</b> into a brand-new ChatGPT or Claude chat and send.</li>
+        <li><b>Pick your first asset</b> — commercial, caption, email, flyer, or live selling script — and watch it write in your voice.</li>
+      </ol>
+      <p style="line-height:1.6;">Want another version of anything? Just say <i>"give me another version."</i> Your new Promo Director already knows the rules.</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <p style="line-height:1.65;"><img class="emj" src="glam-sparkles.png" alt=""> <b>Want the whole machine?</b> The full <b>Promo Director Generator</b> builds every asset for you — commercial, video ad, flyer, captions, email, the works — and it's <b>free inside The Glam Vault</b>.</p>
+    </div>
+    <button class="bigbtn ghost" onclick="show(1)">↺ Start Over</button>
+    <div class="dots">○ ○ <b>●</b></div>
+  </section>
+
+  <div class="foot">
+    <a class="join" href="https://glamhustlehub.com/products/the-glam-vault"><img class="emj" src="glam-sparkles.png" alt=""> Join The Glam Vault</a>
+    <a class="shop" href="https://glamhustlehub.com"><img class="emj" src="glam-butterfly.png" alt=""> Shop Glam Hustle Hub</a>
+  </div>
+  <p class="sub" style="font-size:12px; margin-top:14px;">Made with <img class="emj" src="glam-heart.png" alt="love"> by Glam Hustle Hub · Made with AI</p>
+</div>
+
+<script>
+  /* floating butterflies, sparkles + hearts in the background */
+  (function(){
+    var sky = document.getElementById('sky');
+    var pics = ['glam-butterfly.png','glam-sparkles.png','glam-butterfly.png','glam-heart.png','glam-sparkles.png'];
+    for (var i=0;i<14;i++){
+      var s = document.createElement('div');
+      s.className = 'floater';
+      var img = document.createElement('img');
+      img.src = pics[i % pics.length]; img.alt = '';
+      s.appendChild(img);
+      s.style.left = (Math.random()*94) + '%';
+      s.style.width = (22 + Math.random()*26) + 'px';
+      s.style.animationDuration = (11 + Math.random()*13) + 's';
+      s.style.animationDelay = (-Math.random()*18) + 's';
+      sky.appendChild(s);
+    }
+  })();
+
+  var tone = 'SASSY';
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('sel'); });
+      c.classList.add('sel'); tone = c.getAttribute('data-tone');
+    });
+  });
+  function show(n){
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); });
+    document.getElementById('s'+n).classList.add('on');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function burst(){
+    var pics = ['glam-sparkles.png','glam-heart.png','glam-butterfly.png','glam-sparkles.png'];
+    for (var i=0;i<24;i++){
+      var s = document.createElement('img');
+      s.className='spark'; s.src = pics[Math.floor(Math.random()*pics.length)]; s.alt='';
+      s.style.left = (45+Math.random()*10)+'%'; s.style.top = '38%';
+      document.body.appendChild(s);
+      (function(el){
+        var dx=(Math.random()-0.5)*340, dy=-(80+Math.random()*230), t=0;
+        var iv=setInterval(function(){
+          t+=16; var p=t/900;
+          el.style.transform='translate('+dx*p+'px,'+(dy*p+340*p*p)+'px) rotate('+(p*160)+'deg)';
+          el.style.opacity = 1-p;
+          if(p>=1){ clearInterval(iv); el.remove(); }
+        },16);
+      })(s);
+    }
+  }
+  document.getElementById('giftBox').addEventListener('click', unwrap);
+  function unwrap(){ burst(); setTimeout(function(){ show(2); }, 450); }
+  function v(id, fallback){ var x=document.getElementById(id).value.trim(); return x ? x : fallback; }
+  function buildPrompt(){
+    var end = v('f_end','[END DATE]');
+    var text =
+'You are my Promo Director — an expert direct-response marketer who runs my whole sale for me, writes in my voice, and sells without being sleazy. This is my Promo Director setup: I give you my offer once, and you build every asset I ask for.\n\n' +
+'MY BUSINESS:\n' +
+'- My product/offer: ' + v('f_product','[YOUR PRODUCT NAME]') + '\n' +
+'- What it does for my customer: ' + v('f_result','[ONE SENTENCE — THE RESULT THEY GET]') + '\n' +
+'- Regular price: $' + v('f_reg','[REGULAR PRICE]') + ' · Sale price: $' + v('f_sale','[SALE PRICE]') + '\n' +
+'- Sale dates: ' + v('f_start','[START DATE]') + ' – ' + end + '\n' +
+'- Shop link: ' + v('f_link','[YOUR SHOP LINK]') + '\n' +
+'- Coupon code (if any): ' + v('f_code','none') + '\n' +
+'- My audience: ' + v('f_aud','[WHO YOU SELL TO — e.g. "women 40+ starting an online business"]') + '\n' +
+'- My tone: ' + tone + '\n\n' +
+'YOUR RULES:\n' +
+'1. Every piece of copy leads with who it\'s for and the result they get — features second, feelings first.\n' +
+'2. Every piece names the deadline. Urgency is honest: the sale really ends on ' + end + '.\n' +
+'3. No hype I can\'t back up, no fake discounts, no profanity.\n' +
+'4. Short sentences. Big energy. Written for a phone screen.\n' +
+'5. When I name an asset (commercial, video ad, flyer, caption, pin, email, live script, content plan), deliver it finished and ready to paste — then offer me one variation.\n\n' +
+'Start by confirming you understand my offer, then ask me which asset we are making first.';
+    document.getElementById('promptOut').textContent = text;
+    burst(); show(3);
+  }
+  function copyPrompt(){
+    var btn = document.getElementById('copyBtn');
+    var text = document.getElementById('promptOut').textContent;
+    function done(){ btn.innerHTML='Copied — go paste it!'; setTimeout(function(){ btn.innerHTML='Copy My Prompt <img class="emj" src="glam-heart.png" alt="">'; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done).catch(function(){ fallback(); }); }
+    else { fallback(); }
+    function fallback(){
+      var ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta);
+      ta.select(); try { document.execCommand('copy'); } catch(e){} ta.remove(); done();
+    }
+  }
+</script>
+</body>
+</html>
